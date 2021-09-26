@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.todo.service.TodoSortByDate;
 import com.todo.service.TodoSortByName;
+import com.todo.service.TodoUtil;
 
 public class TodoList {
 	private List<TodoItem> list;
@@ -36,11 +37,7 @@ public class TodoList {
 	}
 
 	public void listAll() {
-		System.out.println("\n"
-				+ "inside list_All method\n");
-		for (TodoItem myitem : list) {
-			System.out.println(myitem.getTitle() + myitem.getDesc());
-		}
+		TodoUtil.listAll(this);
 	}
 	
 	public void reverseList() {
@@ -60,5 +57,13 @@ public class TodoList {
 			if (title.equals(item.getTitle())) return true;
 		}
 		return false;
+	}
+	
+	public int sizeOf() {
+		int i=0;
+		for (TodoItem item : list) {
+			i++;
+		}
+		return i;
 	}
 }
