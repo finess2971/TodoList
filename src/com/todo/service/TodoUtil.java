@@ -83,7 +83,14 @@ public class TodoUtil {
 			System.out.println("존재하지 않는 번호입니다");
 			return;
 		}
-
+		
+		for (TodoItem item : l.getList()) {
+			i++;
+			if (i==title) {
+				l.deleteItem(item);
+			}
+		}
+		
 		System.out.print("새 카테고리 > ");
 		String new_category = sc.next().trim();
 		
@@ -99,18 +106,11 @@ public class TodoUtil {
 		String new_description = sc.nextLine().trim();
 		
 		System.out.print("새 D-Day > ");
-		sc.nextLine();
 		String new_due_date = sc.nextLine().trim();
 		
-		for (TodoItem item : l.getList()) {
-			i++;
-			if (i==title) {
-				l.deleteItem(item);
-				TodoItem t = new TodoItem(new_category, new_title, new_description, new_due_date);
-				l.addItem(t);
-				System.out.println("항목이 수정되었습니다");
-			}
-		}
+		TodoItem t = new TodoItem(new_category, new_title, new_description, new_due_date);
+		l.addItem(t);
+		System.out.println("항목이 수정되었습니다");
 	}
 
 	public static void listAll(TodoList l) {
